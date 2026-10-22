@@ -48,12 +48,12 @@ jobs:
 
       - name: Commit catalog changes
         run: |
-          if git diff --quiet; then
-            echo "Catalog unchanged."
-            exit 0
-          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add catalog/repositories.json catalog/resources.json
+          if git diff --cached --quiet; then
+            echo "Catalog unchanged."
+            exit 0
+          fi
           git commit -m "chore: refresh repository and resource catalogs"
           git push
