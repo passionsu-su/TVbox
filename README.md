@@ -1,6 +1,6 @@
 # TVBox / 影视仓资源导航
 
-这是一个**手动维护的导航页**：整理 TVBox / 影视仓相关项目、接口目录和客户端。仓库保持 Private，不自动抓取、合并或分发第三方资源。
+这是一个 TVBox / 影视仓项目导航与检测仓库。GitHub Actions 每周搜集公开候选配置、验证 JSON 和部分 API，并生成检测报告；不会自动合并或执行第三方代码。
 
 ## 上游项目一览
 
@@ -32,7 +32,7 @@ Stars / Forks 为 **2026-10-22 的 GitHub 快照**，会变化。按 Stars 大�
 - 检查 JSON 结构，并对部分配置中的第一个 HTTP API 进行受限可访问性检测。
 - **格式正确、HTTP 响应均不代表内容获授权或可以播放。** 未经人工核实授权的条目仅作诊断候选。
 - 不下载或执行第三方 Spider、JAR、脚本或 APK。
-- 只有在 `sources/authorized-playback-tests.json` 中明确填写授权依据和直接媒体测试 URL，才会运行 ffprobe 媒体流探测；这仍不等于 TVBox 客户端实际播放。
+- 只有在 `sources/authorized-playback-tests.json` 中明确填写授权依据和直接媒体测试 URL，才会运行 ffprobe 并尝试用 FFmpeg 解码最多 5 秒媒体样本；这仍不等于 TVBox 客户端实际播放。
 - 机器可读结果会写入 [sources/catalog.json](sources/catalog.json)。只有 README 或报告变化时才提交。
 
 当前尚未完成首次自动检测；不会将未经真实客户端验证的资源标记为“已播放成功”。
