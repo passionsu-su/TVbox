@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TVBox 配置链接</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400&display=swap"
+    />
+    <link rel="stylesheet" href="hark.css" />
+    <link rel="stylesheet" href="hark-hero.css" />
+    <style>
+      .x-urls { list-style: none; margin: 0; padding: 0; }
+      .x-urls > li { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 20px; row-gap: 8px; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--stroke-secondary); min-width: 0; }
+      .x-urls > li:last-child { border-bottom: 0; }
+      .x-urls__body { min-width: 0; }
+      .x-urls__name { display: block; font-weight: var(--weight-bold); }
+      .x-urls__note { display: block; font: var(--type-caption); color: var(--text-secondary); margin-top: 2px; }
+      .x-urls__url {
+        display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden;
+        margin-top: 4px; font-family: "Geist Mono", ui-monospace, monospace; font-size: var(--size-caption); line-height: 1.5;
+        color: var(--text-secondary); overflow-wrap: anywhere; word-break: break-all;
+      }
+      .x-urls__acts { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+      .x-urls__acts .btn { cursor: pointer; min-width: 72px; justify-content: center; }
+      .x-urls__acts .btn.is-ok { background: var(--fill-primary); color: var(--text-primary-on); border-color: var(--fill-primary); }
+      .x-urls__acts .btn.is-fail { border-color: var(--fill-system-red); }
+      @media (max-width: 599px) {
+        .x-urls > li { grid-template-columns: minmax(0, 1fr); }
+        .x-urls__acts { justify-content: flex-start; }
+        .x-urls__acts .btn { flex: 1; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page" id="top">
+      <header class="nav glass" data-auto></header>
+      <main class="main">
+        <section class="hero">
+          <div class="hero__copy">
+            <p class="hero__eyebrow">passionsu-su/TVbox · 2026-10-22 快照</p>
+            <h1>TVBox 配置链接</h1>
+            <p class="hero__sub">一键复制，粘贴到 TVBox / 影视仓 / OK影视。每个地址都有“国内加速”版（jsDelivr 镜像）。</p>
+            <p class="hero__meta">18 个地址 · 每周自动检测</p>
+          </div>
+          <aside class="callout" aria-label="建议">
+            <p class="callout__head">先这样做</p>
+            <p class="callout__lead"><strong>每次只添加一个地址。</strong>打不开就点“国内加速”或换下一个。</p>
+            <a class="btn" href="#try">推荐先试</a>
+          </aside>
+        </section>
+
+        <section class="section" id="try" data-nav="先试">
+          <div class="head">
+            <h2>推荐先试，每次只添加一个地址。</h2>
+          </div>
+          <ul class="x-urls">
+            <li data-url="https://raw.githubusercontent.com/TVboxorg/TVbox/main/dist/official.json">
+              <div class="x-urls__body"><span class="x-urls__name">单仓聚合配置 <span class="dot">适合先试</span></span><span class="x-urls__note">粘贴到“配置地址 / 接口地址”</span><span class="x-urls__url">https://raw.githubusercontent.com/TVboxorg/TVbox/main/dist/official.json</span></div>
+            </li>
+            <li data-url="https://raw.githubusercontent.com/wxrjck/-YSC-/refs/heads/main/wx.json">
+              <div class="x-urls__body"><span class="x-urls__name">多仓入口</span><span class="x-urls__note">需客户端支持多仓，只填到“多仓 / 仓库列表”入口</span><span class="x-urls__url">https://raw.githubusercontent.com/wxrjck/-YSC-/refs/heads/main/wx.json</span></div>
+            </li>
+            <li data-url="https://raw.githubusercontent.com/qist/tvbox/master/jsm.json">
+              <div class="x-urls__body"><span class="x-urls__name">qist 配置示例</span><span class="x-urls__url">https://raw.githubusercontent.com/qist/tvbox/master/jsm.json</span></div>
+            </li>
+          </ul>
+        </section>
+
+        <section class="section" id="ok" data-nav="本周可用">
+          <div class="head">
+            <p class="head__eyebrow"><span class="chip chip--solid">接口可访问</span></p>
+            <h2>本周检测：格式通过，接口可访问。</h2>
+            <p class="head__sub">检测于 2026-10-22 07:32 UTC，未实播验证。</p>
+          </div>
+          <ul class="x-urls">
+            <li data-url="https://raw.githubusercontent.com/kimwang1978/tvbox/main/%E5%A4%A9%E5%BE%AE/api.json">
+              <div class="x-urls__body"><span class="x-urls__name">kimwang1978 天微</span><span class="x-urls__url">https://raw.githubusercontent.com/kimwang1978/tvbox/main/天微/api.json</span></div>
+            </li>
+            <li data-url="https://raw.githubusercontent.com/songlees355-wq/okay/main/tvbox.json">
+              <div class="x-urls__body"><span class="x-urls__name">songlees355-wq okay</span><span class="x-urls__url">https://raw.githubusercontent.com/songlees355-wq/okay/main/tvbox.json</span></div>
+            </li>
+          </ul>
+        </section>
+
+        <section class="section" id="unchecked" data-nav="未检测">
+          <div class="head">
+            <p class="head__eyebrow"><span class="chip">接口未检测</span></p>
+            <h2>格式通过，接口还没检测。</h2>
+          </div>
+          <ul class="x-urls">
+            <li data-url="https://raw.githubusercontent.com/qist/tvbox/master/fty.json">
+              <div class="x-urls__body"><span class="x-urls__name">qist fty</span><span class="x-urls__url">https://raw.githubusercontent.com/qist/tvbox/master/fty.json</span></div>
+            </li>
+            <li data-url="https://raw.githubusercontent.com/qist/tvbox/master/xiaosa/api.json">
+              <div class="x-urls__body"><span class="x-urls__name">qist 小洒 xiaosa</span><span class="x-urls__url">https://raw.githubusercontent.com/qist/tvbox/master/xiaosa/api.json</span></div>
+            </li>
+            <li data-url="https://raw.githubusercontent.com/UndCover/PyramidStore/main/py.json">
+              <div class="x-urls__body"><span class="x-urls__name">PyramidStore py</span><span class="x-urls__url">https://raw.githubusercontent.com/UndCover/PyramidStore/main/py.json</span></div>
+            </li>
+            <li data-url="https://raw.githubusercontent.com/kimwang1978/tvbox/main/%E5%8A%A8%E6%BC%AB%E9%A2%91%E9%81%93/api.json">
+              <div class="x-urls__body"><span class="x-urls__name">kimwang1978 动漫频道</span><span class="x-urls__url">https://raw.githubusercontent.com/kimwang1978/tvbox/main/动漫频道/api.json</span></div>
+            </li>
+            <li data-url="https://raw.githubusercontent.com/kimwang1978/tvbox/main/%E5%8D%97%E9%A3%8E/api.json">
+              <div class="x-urls__body"><span class="x-urls__name">kimwang1978 南风</span><span class="x-urls__url">https://raw.githubusercontent.com/kimwang1978/tvbox/main/南风/api.json</span></div>
+            </li>
+            <li data-url="https://raw.githubusercontent.com/kimwang1978/tvbox/main/%E5%A4%A9%E5%A4%A9%E5%BC%80%E5%BF%83/api.json">
+              <div class="x-urls__body"><span class="x-urls__name">kimwang1978 天天开心</span><span class="x-urls__url">https://raw.githubusercontent.com/kimwang1978/tvbox/main/天天开心/api.json</span></div>
+            </li>
+            <li data-url="https://raw.githubusercontent.com/kimwang1978/tvbox/main/OK/api.json">
+              <div class="x-urls__body"><span class="x-urls__name">kimwang1978 OK</span><span class="x-urls__url">https://raw.githubusercontent.com/kimwang1978/tvbox/main/OK/api.json</span></div>
+            </li>
+            <li data-url="https://raw.githubusercontent.com/kimwang1978/tvbox/main/PG/api.json">
+              <div class="x-urls__body"><span class="x-urls__name">kimwang1978 PG</span><span class="x-urls__url">https://raw.githubusercontent.com/kimwang1978/tvbox/main/PG/api.json</span></div>
+            </li>
+            <li data-url="https://raw.githubusercontent.com/mrgaoshuiquan/tvbox-config/main/tvbox.json">
+              <div class="x-urls__body"><span class="x-urls__name">mrgaoshuiquan tvbox</span><span class="x-urls__url">https://raw.githubusercontent.com/mrgaoshuiquan/tvbox-config/main/tvbox.json</span></div>
+            </li>
+          </ul>
+        </section>
+
+        <section class="section" id="backup" data-nav="备用">
+          <div class="head">
+            <p class="head__eyebrow"><span class="chip">接口检测失败</span></p>
+            <h2>备用：格式通过，但接口检测失败，可能打不开。</h2>
+          </div>
+          <ul class="x-urls">
+            <li data-url="https://raw.githubusercontent.com/chitue/dongliTV/main/api.json">
+              <div class="x-urls__body"><span class="x-urls__name">冬离 dongliTV</span><span class="x-urls__url">https://raw.githubusercontent.com/chitue/dongliTV/main/api.json</span></div>
+            </li>
+            <li data-url="https://raw.githubusercontent.com/xianyuyimu/TVBOX-/main/TVBox/%E4%B8%80%E6%9C%A8%E8%87%AA%E7%94%A8.json">
+              <div class="x-urls__body"><span class="x-urls__name">一木自用</span><span class="x-urls__url">https://raw.githubusercontent.com/xianyuyimu/TVBOX-/main/TVBox/一木自用.json</span></div>
+            </li>
+            <li data-url="https://raw.githubusercontent.com/xianyuyimu/TVBOX-/main/TVBox/%E5%A4%87%E7%94%A8.json">
+              <div class="x-urls__body"><span class="x-urls__name">一木备用</span><span class="x-urls__url">https://raw.githubusercontent.com/xianyuyimu/TVBOX-/main/TVBox/备用.json</span></div>
+            </li>
+            <li data-url="https://raw.githubusercontent.com/kimwang1978/tvbox/main/iptv365/api.json">
+              <div class="x-urls__body"><span class="x-urls__name">kimwang1978 iptv365</span><span class="x-urls__url">https://raw.githubusercontent.com/kimwang1978/tvbox/main/iptv365/api.json</span></div>
+            </li>
+          </ul>
+        </section>
+
+        <section class="section" id="how" data-nav="怎么填">
+          <div class="head"><h2>怎么填：五步搞定。</h2></div>
+          <div class="steps">
+            <article class="step">
+              <div class="step__intro"><p class="step__num">01</p></div>
+              <div><h3>打开客户端设置</h3></div>
+            </article>
+            <article class="step">
+              <div class="step__intro"><p class="step__num">02</p></div>
+              <div><h3>找“配置地址 / 接口地址 / 订阅配置”</h3></div>
+            </article>
+            <article class="step">
+              <div class="step__intro"><p class="step__num">03</p></div>
+              <div><h3>粘贴并保存</h3></div>
+            </article>
+            <article class="step">
+              <div class="step__intro"><p class="step__num">04</p></div>
+              <div><h3>返回首页等待加载</h3><p>必要时重启应用。</p></div>
+            </article>
+            <article class="step">
+              <div class="step__intro"><p class="step__num">05</p></div>
+              <div><h3>失败就换下一个地址</h3><p>不要装陌生插件或 JAR。</p></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="note" data-nav="提醒">
+          <div class="head"><h2>提醒</h2></div>
+          <div class="cards">
+            <div><h3>每周更新</h3><p>列表来自仓库每周自动检测，此页为 2026-10-22 快照。</p></div>
+            <div><h3>不保证能播</h3><p>格式通过不代表能播放。</p></div>
+            <div><h3>合法观看</h3><p>只看你有权观看的内容。</p></div>
+          </div>
+        </section>
+      </main>
+      <footer class="foot">
+        <p>来自 passionsu-su/TVbox，2026-10-22 快照。</p>
+        <nav aria-label="返回各部分" data-auto></nav>
+        <a class="badge" href="https://hark.com/" target="_blank" rel="noopener"><span class="hark-mark"></span><span>built by hark</span></a>
+      </footer>
+    </div>
+    <script src="hark.js"></script>
+    <script>
+      (function () {
+        function mirror(u) {
+          var m = u.match(/^https:\/\/raw\.githubusercontent\.com\/([^\/]+)\/([^\/]+)\/(?:refs\/heads\/)?([^\/]+)\/(.+)$/);
+          return m ? "https://cdn.jsdelivr.net/gh/" + m[1] + "/" + m[2] + "@" + m[3] + "/" + m[4] : u;
+        }
+        function legacy(text) {
+          try {
+            var ta = document.createElement("textarea");
+            ta.value = text;
+            ta.setAttribute("readonly", "");
+            ta.style.cssText = "position:fixed;top:0;left:0;opacity:0;font-size:16px";
+            document.body.appendChild(ta);
+            ta.focus();
+            ta.select();
+            ta.setSelectionRange(0, text.length);
+            var ok = document.execCommand("copy");
+            document.body.removeChild(ta);
+            return ok;
+          } catch (e) { return false; }
+        }
+        function flash(btn, label, cls) {
+          clearTimeout(btn._t);
+          btn.textContent = label;
+          btn.classList.remove("is-ok", "is-fail");
+          btn.classList.add(cls);
+          btn._t = setTimeout(function () { btn.textContent = btn.dataset.label; btn.classList.remove("is-ok", "is-fail"); }, 1800);
+        }
+        function copy(btn, text) {
+          flash(btn, "已复制", "is-ok");
+          if (legacy(text)) return;
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).catch(function () { flash(btn, "复制失败", "is-fail"); });
+          } else {
+            flash(btn, "复制失败", "is-fail");
+          }
+        }
+        document.querySelectorAll(".x-urls > li[data-url]").forEach(function (li) {
+          var url = li.dataset.url;
+          var acts = document.createElement("div");
+          acts.className = "x-urls__acts";
+          [["复制", url], ["国内加速", mirror(url)]].forEach(function (p) {
+            var b = document.createElement("button");
+            b.type = "button";
+            b.className = "btn";
+            b.textContent = p[0];
+            b.dataset.label = p[0];
+            b.setAttribute("aria-label", p[0] + "：" + li.querySelector(".x-urls__name").firstChild.textContent.trim());
+            b.addEventListener("click", function () { copy(b, p[1]); });
+            acts.appendChild(b);
+          });
+          li.appendChild(acts);
+        });
+      })();
+    </script>
+  </body>
+</html>
