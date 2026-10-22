@@ -16,7 +16,7 @@ permissions:
 
 concurrency:
   group: weekly-tvbox-catalog-validation-v2
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   discover-validate:
