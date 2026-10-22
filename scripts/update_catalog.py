@@ -155,7 +155,7 @@ def main():
     if not rows: lines.append("| 暂无候选 | — | — | — | — | — | 未实播验证 | — | 本周未发现可检查配置 |")
     for r in rows[:60]:
         lines.append(f"| [配置]({r['url']}) | [{esc(r['repository'])}]({r['repository_url']}) | {r['stars']} | {esc(r['license'])} | {esc(r['format_status'])} | {esc(r['interface_status'])} | {esc(r['playback_status'])} | {esc(r['authorization_status'])} | {esc(r['checked_at'])}；{esc(r['notes'])} |")
-    lines += ["","### 经授权测试源的媒体流探测","","只有在 sources/authorized-playback-tests.json 中填写授权依据和直接媒体 URL 的条目才会执行 ffprobe；这仍不等于 TVBox 客户端实播。",""]
+    lines += ["","### 经授权测试源的媒体流探测","","只有在 sources/authorized-playback-tests.json 中填写授权依据和直接媒体 URL 的条目才会执行 ffprobe，并尝试用 FFmpeg 解码最多 5 秒媒体样本；这仍不等于 TVBox 客户端实播。",""]
     if not tests: lines.append("当前未配置经授权的媒体测试源；本次没有任何资源被标记为已实播成功。")
     else:
         lines += ["| 测试源 | 结果 | 备注 | 检测时间 |","|---|---|---|---|"]
