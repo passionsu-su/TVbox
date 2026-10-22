@@ -190,6 +190,9 @@ def main() -> int:
         "resources": discovered,
         "notice": "Index only. No third-party file is mirrored or executed. A successful format check does not establish safety, legality, or playback availability.",
     }
+    for item in discovered:
+        status = item.get("validation", "unknown")
+        payload["validation_summary"][status] = payload["validation_summary"].get(status, 0) + 1
     OUTPUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"Resource catalog written: {len(discovered)} files from {len(repos)} source repositories; {len(failures)} repository failures.")
     return 0 if discovered or not repos else 1
