@@ -34,8 +34,10 @@ jobs:
       - name: Validate Python syntax
         run: python -m py_compile scripts/update_catalog.py
 
-      - name: Check FFmpeg availability
-        run: ffmpeg -version
+      - name: Install FFmpeg for authorized media tests
+        run: |
+          sudo apt-get install --yes ffmpeg
+          ffmpeg -version
 
       - name: Discover and validate public catalog entries
         env:
