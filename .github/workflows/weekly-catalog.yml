@@ -15,7 +15,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: weekly-tvbox-catalog
+  group: weekly-tvbox-catalog-validation-v2
   cancel-in-progress: false
 
 jobs:
