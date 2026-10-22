@@ -118,7 +118,12 @@ def playback():
             p=subprocess.run(["ffprobe","-v","error","-show_entries","stream=codec_type,codec_name","-of","json",t["media_url"]],capture_output=True,text=True,timeout=25)
             info=json.loads(p.stdout or "{}") if p.returncode==0 else {}
             has=any(s.get("codec_type") in ("audio","video") for s in info.get("streams",[]))
-            result.append({"name":name,"status":"媒体流探测通过" if has else "检测失败","detail":"ffprobe found AV stream; not actual client playback" if has else (p.stderr or "no audio/video stream")[-150:],"checked_at":NOW})
+            if not has:
+                result.append({"name":name,"status":"检测失败","detail":(p.stderr or "no audio/video stream")[-150:],"checked_at":NOW})
+                continue
+            # Decode a short sample instead of merely checking the HTTP response.
+            decoded=subprocess.run(["ffmpeg","-v","error","-i",t["media_url"],"-t","5","-f","null","-"],capture_output=True,text=True,timeout=35)
+            result.append({"name":name,"status":"媒体解码测试通过（非 TVBox 客户端）" if decoded.returncode==0 else "媒体解码失败","detail":"FFmpeg decoded up to 5 seconds; still not actual TVBox-client playback" if decoded.returncode==0 else (decoded.stderr or "ffmpeg decode failed")[-150:],"checked_at":NOW})
         except Exception as e: result.append({"name":name,"status":"检测失败","detail":str(e)[:150],"checked_at":NOW})
     return result
 
