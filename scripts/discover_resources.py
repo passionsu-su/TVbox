@@ -24,8 +24,13 @@ USER_AGENT = "TVbox-Resource-Catalog/1.0"
 MAX_BYTES = 1_500_000
 MAX_FILES_PER_REPO = 30
 TIMEOUT = 12
-JSON_NAMES = ("tvbox", "tv", "config", "source", "live", "iptv", "m3u", "json", "lmw", "jsm", "xc", "cat", "xyq", "xbpq", "vod", "多仓", "直播")
 TEXT_NAMES = ("tvbox", "live", "iptv", "m3u", "source", "直播", "频道")
+EXCLUDED_NAMES = {
+    "package.json", "package-lock.json", "pnpm-lock.yaml", "yarn.lock",
+    "tsconfig.json", "manifest.json", "shield.json", "status.json",
+    "status_history.json", "live_status.json", "live_status_history.json",
+    "live_shield.json", "update_shield.json", "merge-meta.json", "probe.json",
+}
 
 
 def request_bytes(url: str, limit: int = MAX_BYTES) -> bytes:
@@ -48,13 +53,45 @@ def request_json(url: str) -> dict:
 def classify(path: str) -> str | None:
     lower = path.lower()
     name = lower.rsplit("/", 1)[-1]
-    if name.endswith(".json") and any(k in name for k in JSON_NAMES):
+    if name in EXCLUDED_NAMES or name.startswith("."):
+        return None
+    if lower.startswith((".github/", ".claude/", "node_modules/")):
+        return None
+    if name.endswith(".json"):
         return "json"
-    if name.endswith(".m3u") or name.endswith(".m3u8"):
+    if name.endswith((".m3u", ".m3u8")):
         return "m3u"
     if name.endswith(".txt") and any(k in name for k in TEXT_NAMES):
         return "txt"
     return None
+
+
+def candidate_priority(path: str) -> tuple[int, str]:
+    """Rank likely client-ready resources before metadata and helper configs."""
+    lower = path.lower()
+    name = lower.rsplit("/", 1)[-1]
+    score = 0
+    exact_names = {
+        "tvbox.json", "lmw.json", "official.json", "aggregate.json",
+        "subscribe.json", "js.json", "jsm.json", "xc.json", "xyq.json",
+        "xbpq.json", "cat.json", "live.json", "live.txt", "live.m3u",
+        "0821.json", "0822.json", "0825.json", "0826.json", "0827.json", "0828.json",
+    }
+    if name in exact_names:
+        score += 100
+    if any(token in name for token in ("tvbox", "official", "aggregate", "subscribe", "lmw", "jsm", "xbpq", "xyq")):
+        score += 50
+    if lower.startswith(("output/", "dist/")):
+        score += 30
+    if "/" not in path:
+        score += 20
+    if name.endswith((".m3u", ".m3u8", ".txt")):
+        score += 15
+    if any(token in name for token in ("source", "live", "iptv", "config", "直播", "频道")):
+        score += 10
+    if name.startswith(tuple("0123456789")) and name.endswith(".json"):
+        score += 8
+    return (-score, lower)
 
 
 def validate_content(kind: str, content: bytes) -> tuple[str, str, int]:
@@ -68,11 +105,10 @@ def validate_content(kind: str, content: bytes) -> tuple[str, str, int]:
         except json.JSONDecodeError as exc:
             return "invalid-json", f"JSON parse error at line {exc.lineno}, column {exc.colno}", 0
         if isinstance(obj, dict):
-            sites = obj.get("sites")
-            lives = obj.get("lives")
-            urls = obj.get("urls")
-            if isinstance(sites, list) or isinstance(lives, list) or isinstance(urls, list):
-                return "tvbox-config", "JSON parsed; TVBox-like sites/lives/urls field found", len(sites or []) + len(lives or []) + len(urls or [])
+            lists = [obj.get(field) for field in ("sites", "lives", "urls", "parses")]
+            if any(isinstance(value, list) for value in lists):
+                count = sum(len(value) for value in lists if isinstance(value, list))
+                return "tvbox-config", "JSON parsed; TVBox-like sites/lives/urls/parses field found", count
         return "valid-json-other", "JSON parsed but expected TVBox fields were not found", 0
     if kind == "m3u":
         if stripped.startswith("#EXTM3U"):
@@ -116,9 +152,10 @@ def main() -> int:
                 if not kind or int(item.get("size", 0)) > MAX_BYTES:
                     continue
                 candidates.append((path, kind, int(item.get("size", 0))))
-            candidates.sort(key=lambda x: (0 if any(k in x[0].lower() for k in ("output/", "dist/", "config/")) else 1, x[0].lower()))
+            candidates.sort(key=lambda x: candidate_priority(x[0]))
             for path, kind, size in candidates[:MAX_FILES_PER_REPO]:
-                raw_url = "https://raw.githubusercontent.com/" + repo + "/" + encoded_branch + "/" + urllib.parse.quote(path, safe="/")
+                raw_branch = urllib.parse.quote(branch, safe="/")
+                raw_url = "https://raw.githubusercontent.com/" + repo + "/" + raw_branch + "/" + urllib.parse.quote(path, safe="/")
                 row = {
                     "repo": meta.get("full_name", repo),
                     "path": path,
@@ -148,6 +185,7 @@ def main() -> int:
         "source_repositories": len(repos),
         "resource_count": len(discovered),
         "validated_count": sum(1 for item in discovered if item.get("validation", "").startswith(("tvbox-", "valid-")) or item.get("validation") == "txt-with-urls"),
+        "validation_summary": {},
         "failures": failures,
         "resources": discovered,
         "notice": "Index only. No third-party file is mirrored or executed. A successful format check does not establish safety, legality, or playback availability.",

@@ -2,7 +2,7 @@
 """Offline smoke tests for the resource discovery parser."""
 import unittest
 
-from discover_resources import classify, validate_content
+from discover_resources import candidate_priority, classify, validate_content
 
 
 class ClassifyTests(unittest.TestCase):
@@ -16,6 +16,15 @@ class ClassifyTests(unittest.TestCase):
 
     def test_unrelated_text_is_ignored(self):
         self.assertIsNone(classify("docs/tutorial.txt"))
+
+    def test_build_metadata_is_ignored(self):
+        self.assertIsNone(classify("package-lock.json"))
+        self.assertIsNone(classify(".claude/settings.json"))
+        self.assertIsNone(classify("output/status.json"))
+
+    def test_client_configs_rank_first(self):
+        self.assertLess(candidate_priority("tvbox.json"), candidate_priority("json/123.json"))
+        self.assertLess(candidate_priority("dist/official.json"), candidate_priority("package.json"))
 
 
 class ValidationTests(unittest.TestCase):
