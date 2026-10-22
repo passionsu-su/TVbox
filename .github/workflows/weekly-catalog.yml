@@ -1,6 +1,11 @@
 name: Weekly TVBox catalog
 
 on:
+  push:
+    paths:
+      - ".github/workflows/weekly-catalog.yml"
+      - "scripts/update_catalog.py"
+      - "sources/authorized-playback-tests.json"
   schedule:
     # Every Tuesday at 03:17 UTC; avoid the top of the hour.
     - cron: "17 3 * * 2"
