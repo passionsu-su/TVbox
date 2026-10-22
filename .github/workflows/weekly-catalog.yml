@@ -34,10 +34,14 @@ jobs:
       - name: Validate Python syntax
         run: python -m py_compile scripts/update_catalog.py
 
-      - name: Install FFmpeg for authorized media tests
+      - name: Install FFmpeg only when authorized media tests exist
         run: |
-          sudo apt-get install --yes ffmpeg
-          ffmpeg -version
+          if python -c 'import json,sys; sys.exit(0 if json.load(open("sources/authorized-playback-tests.json", encoding="utf-8")).get("tests") else 1)'; then
+            sudo apt-get install --yes ffmpeg
+            ffmpeg -version
+          else
+            echo "No authorized playback tests configured; skipping FFmpeg installation."
+          fi
 
       - name: Discover and validate public catalog entries
         env:
