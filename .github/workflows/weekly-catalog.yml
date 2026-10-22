@@ -31,10 +31,11 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install FFmpeg for explicitly authorized playback tests
-        run: |
-          sudo apt-get update
-          sudo apt-get install --yes ffmpeg
+      - name: Validate Python syntax
+        run: python -m py_compile scripts/update_catalog.py
+
+      - name: Check FFmpeg availability
+        run: ffmpeg -version
 
       - name: Discover and validate public catalog entries
         env:
