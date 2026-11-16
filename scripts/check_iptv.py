@@ -1,6 +1,9 @@
 """每周检测 Apple TV 直播源：订阅链接可用性 + 逐个频道探测，合并可用频道生成 appletv/iptv-tested.m3u。
-注：GitHub Actions 机房在海外且无 IPv6，「仅国内可播」和 IPv6 频道会被判为不可用，所以合并列表偏保守。"""
-import json, re, ssl, datetime, urllib.request, concurrent.futures as cf
+注：GitHub Actions 机房在海外且无 IPv6，「仅国内可播」和 IPv6 频道会被判为不可用，所以合并列表偏保守。
+domestic_only 的源（如运营商内网源）跳过探测，只更新检测日期，不参与合并。
+探测要求 m3u8 文本里含 #EXTINF 或 #EXT-X-STREAM-INF，错误页面不再算活。
+合并时按台名去重（每台最多保留 2 条不同 host 的地址），过滤 auth=test 临时 token 和非全天频道。"""
+import json, re, ssl, datetime, urllib.request, urllib.parse, concurrent.futures as cf
 ctx = ssl.create_default_context(); ctx.check_hostname = False; ctx.verify_mode = ssl.CERT_NONE
 UA = {"User-Agent": "AppleCoreMedia/1.0.0 (Apple TV; tvOS 18)"}
 P = 'appletv/playlists.json'
@@ -31,13 +34,26 @@ def probe(u):
         return u, False
     try:
         s, b = get(u, 4096, 8)
-        ok = s == 200 and (b.lstrip().startswith(b'#EXTM3U') or b[:1] == b'G' or b[:3] == b'FLV' or b[4:8] == b'ftyp' or len(b) > 1000)
-        return u, ok
+        if s != 200:
+            return u, False
+        # 二进制媒体分片直接算活
+        if b[:1] == b'G' or b[:3] == b'FLV' or b[4:8] == b'ftyp':
+            return u, True
+        # 播放列表必须真是播放列表：含 #EXTINF 或 #EXT-X-STREAM-INF，
+        # 光是 200 + 超过 1000 字节（错误页面）不再算活
+        t = b.lstrip()
+        return u, (t.startswith(b'#EXTM3U') and (b'#EXTINF' in b or b'#EXT-X-STREAM-INF' in b))
     except Exception:
         return u, False
 
 chs = {}
 for p in cfg['playlists']:
+    if p.get('domestic_only'):
+        # 仅国内家宽可播（如运营商内网源），海外检测机测不出：
+        # 不拉取、不探测、不改频道数，只更新检测日期，不参与合并
+        p['checked'] = today
+        chs[p['key']] = []
+        continue
     try:
         s, b = get(p['url'], t=30)
         lst = parse(b.decode('utf-8', 'replace'))
@@ -50,6 +66,8 @@ print(len(urls), 'urls')
 with cf.ThreadPoolExecutor(128) as ex:
     res = dict(ex.map(probe, urls))
 for p in cfg['playlists']:
+    if p.get('domestic_only'):
+        continue
     p['alive'] = sum(res.get(c['url'], False) for c in chs[p['key']])
     p['checked'] = today
 
@@ -63,12 +81,31 @@ def cat(c):
     if re.search(r'体育|sport', g + n, re.I): return '体育'
     return '地方/其他'
 order = ['央视', '卫视', '港澳台', '影视', '体育', '春晚', '地方/其他']
-seen, merged = set(), []
+def _is_temp_token(url):
+    return 'auth=test' in url.lower()
+seen_url, per_name, merged = set(), {}, []
 for p in cfg['playlists']:
     if not p.get('merge'): continue
     for c in chs[p['key']]:
-        if res.get(c['url']) and c['url'] not in seen and '更新' not in c['group']:
-            seen.add(c['url']); c['cat'] = cat(c); merged.append(c)
+        if not res.get(c['url']) or c['url'] in seen_url or '更新' in c['group']:
+            continue
+        # 临时测试 token 迟早过期，不进合并列表
+        if _is_temp_token(c['url']):
+            continue
+        # 非全天频道不进合并列表
+        if 'Not 24/7' in (c['name'] + c['group']):
+            continue
+        key = (c['name'] or '').strip().lower()
+        if not key:
+            continue
+        # 按台名去重：每台最多保留 2 条，且须来自不同 host（首选 + 备用）
+        lst = per_name.setdefault(key, [])
+        if len(lst) >= 2:
+            continue
+        host = urllib.parse.urlparse(c['url']).hostname or ''
+        if any(urllib.parse.urlparse(x['url']).hostname == host for x in lst):
+            continue
+        seen_url.add(c['url']); c['cat'] = cat(c); lst.append(c); merged.append(c)
 merged.sort(key=lambda c: (order.index(c['cat']), c['name']))
 L = ['#EXTM3U x-tvg-url="https://live.fanmingming.cn/e.xml"', f'# Apple TV 可用直播源合集 · 检测于 {today} · {len(merged)} 个频道 · https://github.com/passionsu-su/TVbox']
 for c in merged:
