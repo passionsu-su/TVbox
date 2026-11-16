@@ -30,6 +30,13 @@ Stars / Forks 为 **2026-10-22 的 GitHub 快照**，会变化。按 Stars 大�
 
 > 表格是项目导航，不代表安全审计、版权授权或播放可用性保证。客户端与配置资源是不同类别；Stars 高也不等于接口稳定、内容合法或没有风险。第三方仓库可能没有明确许可证，引用或转载前请检查各自 README、许可证和使用条款。
 
+## 📺 Apple TV 专区
+
+IPTV 播放器（免费优先）、每周自动检测的直播源与合并好的可用列表、TestFlight 浏览器、第三方 B 站客户端、免费音乐 App：👉 **[appletv/README.md](appletv/README.md)**
+
+- 合并可用直播源（填进 APTV / Fjord / SenPlayer 等）：`https://passionsu-su.github.io/TVbox/appletv/iptv-tested.m3u`
+- EPG 节目单：`https://live.fanmingming.cn/e.xml`
+
 <!-- TVBOX-CATALOG:START -->
 ## 每周自动发现与检测结果
 
