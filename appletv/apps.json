@@ -1,8 +1,10 @@
 {
  "iptv": [
-  {"name":"Fjord IPTV Player","price":"免费，无内购无广告","fmt":"M3U / M3U8 / Xtream","note":"完全免费里体验最完整：直播+EPG+点播海报墙，mpv 内核；tvOS 17+","cn":"✅","url":"https://apps.apple.com/app/id6788160093"},
-  {"name":"Bro IPTV Player","price":"免费，开源 MIT","fmt":"M3U / M3U8 / EPG","note":"开源、无广告无账号，支持 PIN 锁播放列表，界面有简体中文","cn":"✅","url":"https://apps.apple.com/us/app/bro-iptv-player/id6762360135","src":"https://github.com/mikehouse/Apple-TV-Player"},
-  {"name":"APTV","price":"免费下载 + 内购","fmt":"M3U / EPG / 回看","note":"国人开发、中文最友好，频道实时预览、iCloud 同步；免费版有功能限制","cn":"✅","url":"https://apps.apple.com/cn/app/aptv/id1630403500","src":"https://github.com/Kimentanm/aptv"},
+  {"name":"Yingxia（映匣）","price":"免费 TestFlight / 自签","fmt":"TVBox JSON / M3U / TXT","note":"原生 SwiftUI TVBox 客户端：TVBox JSON 订阅、直播+点播、跨源搜索、插件；tvOS 17+，v1.8.23","cn":"✅ TF/自签","url":"https://testflight.apple.com/join/SSgWEwSr","src":"https://github.com/jo32/tvbox-silicon"},
+  {"name":"Fjord IPTV Player","price":"免费，无内购无广告","fmt":"M3U / M3U8 / Xtream","note":"完全免费里体验最完整：直播+EPG+点播海报墙，mpv 内核；tvOS 17+（v1.6.3，2026-11-15）","cn":"✅","url":"https://apps.apple.com/app/id6788160093"},
+  {"name":"Bro IPTV Player","price":"免费，开源 MIT","fmt":"M3U / M3U8 / EPG","note":"开源、无广告无账号，支持 PIN 锁播放列表，界面有简体中文（v1.2.0，2026-10-30）","cn":"✅","url":"https://apps.apple.com/us/app/bro-iptv-player/id6762360135","src":"https://github.com/mikehouse/Apple-TV-Player"},
+  {"name":"APTV","price":"免费下载 + 内购","fmt":"M3U / EPG / 回看","note":"国人开发、中文最友好，频道实时预览、iCloud 同步；免费版有功能限制（v1.5.13，2026-11-01；认准 id 1630403500，勿装同名山寨 App）","cn":"✅","url":"https://apps.apple.com/cn/app/aptv/id1630403500","src":"https://github.com/Kimentanm/aptv"},
+  {"name":"VidPlay","price":"免费","fmt":"TVBox JSON / M3U / VOD","note":"App Store 直装：TVBox JSON、WebDAV、AList、VOD 点播（v1.5.8，2026-11-10）","cn":"✅","url":"https://apps.apple.com/us/app/vidplay/id6467240929"},
   {"name":"SenPlayer","price":"免费下载 + 内购","fmt":"M3U / M3U8 / TXT 订阅","note":"IPTV + 网盘 + Emby/Jellyfin 一体，支持 TXT 格式直播源","cn":"✅","url":"https://apps.apple.com/us/app/senplayer-media-player/id6443975850"},
   {"name":"VLC","price":"免费，开源","fmt":"单条流 / m3u 文件","note":"没有频道列表和 EPG，适合临时测试某条地址能不能播","cn":"✅","url":"https://apps.apple.com/us/app/vlc-media-player/id650377962"},
   {"name":"UHF","price":"免费基础版 + PRO","fmt":"M3U8 / Xtream / Plex / Jellyfin","note":"界面最像原生 Apple 风格；国区未上架，需外区 Apple ID","cn":"❌ 外区","url":"https://apps.apple.com/us/app/uhf-love-your-iptv/id6443751726"},

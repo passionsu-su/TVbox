@@ -1,14 +1,16 @@
 # 📺 Apple TV 专区：IPTV 直播 · 浏览器 · B 站 · 音乐
 
-> 直播源每周一由 GitHub Actions 自动检测（最近检测：2026-11-16）。免费的排在前面。
+> 直播源每周一由 GitHub Actions 自动检测（最近检测：2026-11-17）。免费的排在前面。
 >
 > ⚠️ 检测机器在海外、没有 IPv6，「仅国内可播」和 IPv6 频道会被误判失效，所以下面的可用数**只少不多**，国内实际能播的更多。
+>
+> 📦 想在 Apple TV 上直接用 TVBox JSON 配置（不只是 M3U），装 **Yingxia**（TestFlight / 自签）或 **VidPlay**（App Store）；其他播放器只认 M3U / Xtream。
 
 ## 一、直播源（直接填进播放器）
 
 ### ⭐ 本仓库合并好的「已测可用」列表
 
-已逐个频道探测、去重并按 央视 / 卫视 / 港澳台 / 影视 / 体育 / 春晚 / 地方 分组，共 **1105** 个频道（央视 110、卫视 171、港澳台 121、影视 182、体育 15、春晚 38、地方/其他 468）。已内置 EPG 节目单地址。
+已逐个频道探测、按台名去重（每台最多保留 2 条不同来源地址）并按 央视 / 卫视 / 港澳台 / 影视 / 体育 / 春晚 / 地方 分组，共 **1105** 个频道（央视 110、卫视 171、港澳台 121、影视 182、体育 15、春晚 38、地方/其他 468）。已内置 EPG 节目单地址。
 
 | 用途 | 地址 |
 |---|---|
@@ -31,6 +33,9 @@
 | 范明明 fanmingming/live（IPv6，画质好） | `https://live.fanmingming.cn/tv/m3u/ipv6.m3u`<br>备用 `https://raw.githubusercontent.com/fanmingming/live/main/tv/m3u/ipv6.m3u` | 82 | 14 | IPv6（需家宽 IPv6） |
 | suxuang/myIPTV（IPv6） | `https://raw.githubusercontent.com/suxuang/myIPTV/main/ipv6.m3u` | 862 | 64 | IPv6（需家宽 IPv6） |
 | Free-TV/IPTV（全球免费频道，英文为主） | `https://raw.githubusercontent.com/Free-TV/IPTV/master/playlist.m3u8` | 2197 | 1534 | IPv4 |
+| 福建移动（仅厦门移动宽带内） | `https://raw.githubusercontent.com/imDazui/Tvlist-awesome-m3u-m3u8/master/m3u/%E7%A6%8F%E5%BB%BA%E7%A7%BB%E5%8A%A8.m3u` | 127 | — | 仅厦门移动宽带 |
+| CHINA-IPTV 福建移动 unicast（仅厦门移动宽带内） | `https://raw.githubusercontent.com/xisohi/CHINA-IPTV/main/Unicast/fujian/mobile.txt` | 238 | — | 仅厦门移动宽带 |
+| 范明明 itv.m3u（候选，需家宽实测） | `https://raw.githubusercontent.com/fanmingming/live/main/tv/m3u/itv.m3u` | 189 | — | IPv4 |
 
 ### EPG 节目单
 
@@ -45,9 +50,11 @@
 
 | App | 价格 | 支持格式 | 国区 | 说明 | 链接 |
 |---|---|---|---|---|---|
-| Fjord IPTV Player | 免费，无内购无广告 | M3U / M3U8 / Xtream | ✅ | 完全免费里体验最完整：直播+EPG+点播海报墙，mpv 内核；tvOS 17+ | [打开](https://apps.apple.com/app/id6788160093) |
-| Bro IPTV Player | 免费，开源 MIT | M3U / M3U8 / EPG | ✅ | 开源、无广告无账号，支持 PIN 锁播放列表，界面有简体中文 | [打开](https://apps.apple.com/us/app/bro-iptv-player/id6762360135) · [源码](https://github.com/mikehouse/Apple-TV-Player) |
-| APTV | 免费下载 + 内购 | M3U / EPG / 回看 | ✅ | 国人开发、中文最友好，频道实时预览、iCloud 同步；免费版有功能限制 | [打开](https://apps.apple.com/cn/app/aptv/id1630403500) · [源码](https://github.com/Kimentanm/aptv) |
+| Yingxia（映匣） | 免费 TestFlight / 自签 | TVBox JSON / M3U / TXT | ✅ TF/自签 | 原生 SwiftUI TVBox 客户端：TVBox JSON 订阅、直播+点播、跨源搜索、插件；tvOS 17+，v1.8.23 | [打开](https://testflight.apple.com/join/SSgWEwSr) · [源码](https://github.com/jo32/tvbox-silicon) |
+| Fjord IPTV Player | 免费，无内购无广告 | M3U / M3U8 / Xtream | ✅ | 完全免费里体验最完整：直播+EPG+点播海报墙，mpv 内核；tvOS 17+（v1.6.3，2026-11-15） | [打开](https://apps.apple.com/app/id6788160093) |
+| Bro IPTV Player | 免费，开源 MIT | M3U / M3U8 / EPG | ✅ | 开源、无广告无账号，支持 PIN 锁播放列表，界面有简体中文（v1.2.0，2026-10-30） | [打开](https://apps.apple.com/us/app/bro-iptv-player/id6762360135) · [源码](https://github.com/mikehouse/Apple-TV-Player) |
+| APTV | 免费下载 + 内购 | M3U / EPG / 回看 | ✅ | 国人开发、中文最友好，频道实时预览、iCloud 同步；免费版有功能限制（v1.5.13，2026-11-01；认准 id 1630403500，勿装同名山寨 App） | [打开](https://apps.apple.com/cn/app/aptv/id1630403500) · [源码](https://github.com/Kimentanm/aptv) |
+| VidPlay | 免费 | TVBox JSON / M3U / VOD | ✅ | App Store 直装：TVBox JSON、WebDAV、AList、VOD 点播（v1.5.8，2026-11-10） | [打开](https://apps.apple.com/us/app/vidplay/id6467240929) |
 | SenPlayer | 免费下载 + 内购 | M3U / M3U8 / TXT 订阅 | ✅ | IPTV + 网盘 + Emby/Jellyfin 一体，支持 TXT 格式直播源 | [打开](https://apps.apple.com/us/app/senplayer-media-player/id6443975850) |
 | VLC | 免费，开源 | 单条流 / m3u 文件 | ✅ | 没有频道列表和 EPG，适合临时测试某条地址能不能播 | [打开](https://apps.apple.com/us/app/vlc-media-player/id650377962) |
 | UHF | 免费基础版 + PRO | M3U8 / Xtream / Plex / Jellyfin | ❌ 外区 | 界面最像原生 Apple 风格；国区未上架，需外区 Apple ID | [打开](https://apps.apple.com/us/app/uhf-love-your-iptv/id6443751726) |
@@ -55,7 +62,7 @@
 | Revue | 试用 7 天，买断 $9.99 | M3U / HLS / TS / RTSP | ✅ | 专为运营商 IPTV 组播（udpxy / rtp2httpd）优化，需 tvOS 26 | [打开](https://apps.apple.com/us/app/revue-iptv-stream-player/id6816327004) |
 | iPlayTV | 买断 ¥38 / $5.99 | M3U / Xtream / EPG | ✅ | 老牌 Apple TV 专用播放器，网格节目单 | [打开](https://apps.apple.com/us/app/iplaytv-iptv-m3u-player/id1072226801) |
 
-> 推荐组合：**Fjord**（全免费）或 **APTV**（中文、国区）+ 上面的「已测可用」列表 + 范明明 EPG。
+> 推荐组合：只看直播用 **Fjord**（全免费）或 **APTV**（中文、国区）+ 上面的「已测可用」列表 + 范明明 EPG；想在 Apple TV 上用 TVBox JSON 配置，装 **Yingxia**（TestFlight / 自签）或 **VidPlay**（App Store）。
 
 ## 三、浏览器（TestFlight / 开源）
 

@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-16",
+ "updated": "2026-11-17",
  "epg": [
   {
    "name": "范明明 EPG（央视/卫视全）",
@@ -133,6 +133,38 @@
    "channels": 2197,
    "alive": 1534,
    "checked": "2026-11-16"
+  },
+  {
+   "key": "fujian-mobile",
+   "name": "福建移动（仅厦门移动宽带内）",
+   "url": "https://raw.githubusercontent.com/imDazui/Tvlist-awesome-m3u-m3u8/master/m3u/%E7%A6%8F%E5%BB%BA%E7%A7%BB%E5%8A%A8.m3u",
+   "ipv6": false,
+   "merge": false,
+   "domestic_only": true,
+   "reachable": true,
+   "channels": 127,
+   "checked": "2026-11-17"
+  },
+  {
+   "key": "fujian-mobile-txt",
+   "name": "CHINA-IPTV 福建移动 unicast（仅厦门移动宽带内）",
+   "url": "https://raw.githubusercontent.com/xisohi/CHINA-IPTV/main/Unicast/fujian/mobile.txt",
+   "ipv6": false,
+   "merge": false,
+   "domestic_only": true,
+   "reachable": true,
+   "channels": 238,
+   "checked": "2026-11-17"
+  },
+  {
+   "key": "fmml-itv",
+   "name": "范明明 itv.m3u（候选，需家宽实测）",
+   "url": "https://raw.githubusercontent.com/fanmingming/live/main/tv/m3u/itv.m3u",
+   "ipv6": false,
+   "merge": false,
+   "reachable": true,
+   "channels": 189,
+   "checked": "2026-11-17"
   }
  ],
  "merged_count": 1105,
