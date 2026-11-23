@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-17",
+ "updated": "2026-11-23",
  "epg": [
   {
    "name": "范明明 EPG（央视/卫视全）",
@@ -19,9 +19,9 @@
    "ipv6": false,
    "merge": true,
    "reachable": true,
-   "channels": 450,
-   "alive": 412,
-   "checked": "2026-11-16"
+   "channels": 336,
+   "alive": 306,
+   "checked": "2026-11-23"
   },
   {
    "key": "guovin",
@@ -31,8 +31,8 @@
    "merge": true,
    "reachable": true,
    "channels": 1619,
-   "alive": 599,
-   "checked": "2026-11-16"
+   "alive": 582,
+   "checked": "2026-11-23"
   },
   {
    "key": "suxuang-v4",
@@ -42,8 +42,8 @@
    "merge": true,
    "reachable": true,
    "channels": 1225,
-   "alive": 348,
-   "checked": "2026-11-16"
+   "alive": 340,
+   "checked": "2026-11-23"
   },
   {
    "key": "aptv",
@@ -53,8 +53,8 @@
    "merge": true,
    "reachable": true,
    "channels": 120,
-   "alive": 44,
-   "checked": "2026-11-16"
+   "alive": 45,
+   "checked": "2026-11-23"
   },
   {
    "key": "chinaiptv",
@@ -63,9 +63,9 @@
    "ipv6": false,
    "merge": true,
    "reachable": true,
-   "channels": 50,
-   "alive": 32,
-   "checked": "2026-11-16"
+   "channels": 49,
+   "alive": 27,
+   "checked": "2026-11-23"
   },
   {
    "key": "iptvorg-zho",
@@ -76,7 +76,7 @@
    "reachable": true,
    "channels": 228,
    "alive": 105,
-   "checked": "2026-11-16"
+   "checked": "2026-11-23"
   },
   {
    "key": "iptvorg-tw",
@@ -87,7 +87,7 @@
    "reachable": true,
    "channels": 34,
    "alive": 17,
-   "checked": "2026-11-16"
+   "checked": "2026-11-23"
   },
   {
    "key": "iptvorg-hk",
@@ -98,7 +98,7 @@
    "reachable": true,
    "channels": 18,
    "alive": 3,
-   "checked": "2026-11-16"
+   "checked": "2026-11-23"
   },
   {
    "key": "fmml-v6",
@@ -110,7 +110,7 @@
    "reachable": true,
    "channels": 82,
    "alive": 14,
-   "checked": "2026-11-16"
+   "checked": "2026-11-23"
   },
   {
    "key": "suxuang-v6",
@@ -120,8 +120,8 @@
    "merge": false,
    "reachable": true,
    "channels": 862,
-   "alive": 64,
-   "checked": "2026-11-16"
+   "alive": 63,
+   "checked": "2026-11-23"
   },
   {
    "key": "freetv",
@@ -131,8 +131,8 @@
    "merge": false,
    "reachable": true,
    "channels": 2197,
-   "alive": 1534,
-   "checked": "2026-11-16"
+   "alive": 1348,
+   "checked": "2026-11-23"
   },
   {
    "key": "fujian-mobile",
@@ -143,7 +143,7 @@
    "domestic_only": true,
    "reachable": true,
    "channels": 127,
-   "checked": "2026-11-17"
+   "checked": "2026-11-23"
   },
   {
    "key": "fujian-mobile-txt",
@@ -154,7 +154,7 @@
    "domestic_only": true,
    "reachable": true,
    "channels": 238,
-   "checked": "2026-11-17"
+   "checked": "2026-11-23"
   },
   {
    "key": "fmml-itv",
@@ -164,17 +164,18 @@
    "merge": false,
    "reachable": true,
    "channels": 189,
-   "checked": "2026-11-17"
+   "checked": "2026-11-23",
+   "alive": 0
   }
  ],
- "merged_count": 1105,
+ "merged_count": 794,
  "merged_by_cat": {
-  "央视": 110,
-  "卫视": 171,
-  "港澳台": 121,
-  "影视": 182,
-  "体育": 15,
-  "春晚": 38,
-  "地方/其他": 468
+  "央视": 65,
+  "卫视": 80,
+  "港澳台": 96,
+  "影视": 161,
+  "体育": 7,
+  "春晚": 39,
+  "地方/其他": 346
  }
 }

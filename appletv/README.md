@@ -1,6 +1,6 @@
 # 📺 Apple TV 专区：IPTV 直播 · 浏览器 · B 站 · 音乐
 
-> 直播源每周一由 GitHub Actions 自动检测（最近检测：2026-11-17）。免费的排在前面。
+> 直播源每周一由 GitHub Actions 自动检测（最近检测：2026-11-23）。免费的排在前面。
 >
 > ⚠️ 检测机器在海外、没有 IPv6，「仅国内可播」和 IPv6 频道会被误判失效，所以下面的可用数**只少不多**，国内实际能播的更多。
 >
@@ -10,7 +10,7 @@
 
 ### ⭐ 本仓库合并好的「已测可用」列表
 
-已逐个频道探测、按台名去重（每台最多保留 2 条不同来源地址）并按 央视 / 卫视 / 港澳台 / 影视 / 体育 / 春晚 / 地方 分组，共 **1105** 个频道（央视 110、卫视 171、港澳台 121、影视 182、体育 15、春晚 38、地方/其他 468）。已内置 EPG 节目单地址。
+已逐个频道探测、按台名去重（每台最多保留 2 条不同来源地址）并按 央视 / 卫视 / 港澳台 / 影视 / 体育 / 春晚 / 地方 分组，共 **794** 个频道（央视 65、卫视 80、港澳台 96、影视 161、体育 7、春晚 39、地方/其他 346）。已内置 EPG 节目单地址。
 
 | 用途 | 地址 |
 |---|---|
@@ -22,20 +22,20 @@
 
 | 名称 | 订阅地址 | 频道数 | 本周探测可播 | 类型 |
 |---|---|---|---|---|
-| vbskycn/iptv（IPv4，自动更新） | `https://live.zbds.top/tv/iptv4.m3u`<br>备用 `https://raw.githubusercontent.com/vbskycn/iptv/master/tv/iptv4.m3u` | 450 | 412 | IPv4 |
-| Guovin/iptv-api 测速结果 | `https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/result.m3u` | 1619 | 599 | IPv4 |
-| suxuang/myIPTV（IPv4） | `https://raw.githubusercontent.com/suxuang/myIPTV/main/ipv4.m3u` | 1225 | 348 | IPv4 |
-| APTV 官方示例源（Kimentanm/aptv） | `https://raw.githubusercontent.com/Kimentanm/aptv/master/m3u/iptv.m3u` | 120 | 44 | IPv4 |
-| hujingguang/ChinaIPTV（自动更新） | `https://raw.githubusercontent.com/hujingguang/ChinaIPTV/main/cnTV_AutoUpdate.m3u8` | 50 | 32 | IPv4 |
+| vbskycn/iptv（IPv4，自动更新） | `https://live.zbds.top/tv/iptv4.m3u`<br>备用 `https://raw.githubusercontent.com/vbskycn/iptv/master/tv/iptv4.m3u` | 336 | 306 | IPv4 |
+| Guovin/iptv-api 测速结果 | `https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/result.m3u` | 1619 | 582 | IPv4 |
+| suxuang/myIPTV（IPv4） | `https://raw.githubusercontent.com/suxuang/myIPTV/main/ipv4.m3u` | 1225 | 340 | IPv4 |
+| APTV 官方示例源（Kimentanm/aptv） | `https://raw.githubusercontent.com/Kimentanm/aptv/master/m3u/iptv.m3u` | 120 | 45 | IPv4 |
+| hujingguang/ChinaIPTV（自动更新） | `https://raw.githubusercontent.com/hujingguang/ChinaIPTV/main/cnTV_AutoUpdate.m3u8` | 49 | 27 | IPv4 |
 | iptv-org 中文频道（全球公开源） | `https://iptv-org.github.io/iptv/languages/zho.m3u` | 228 | 105 | IPv4 |
 | iptv-org 台湾 | `https://iptv-org.github.io/iptv/countries/tw.m3u` | 34 | 17 | IPv4 |
 | iptv-org 香港 | `https://iptv-org.github.io/iptv/countries/hk.m3u` | 18 | 3 | IPv4 |
 | 范明明 fanmingming/live（IPv6，画质好） | `https://live.fanmingming.cn/tv/m3u/ipv6.m3u`<br>备用 `https://raw.githubusercontent.com/fanmingming/live/main/tv/m3u/ipv6.m3u` | 82 | 14 | IPv6（需家宽 IPv6） |
-| suxuang/myIPTV（IPv6） | `https://raw.githubusercontent.com/suxuang/myIPTV/main/ipv6.m3u` | 862 | 64 | IPv6（需家宽 IPv6） |
-| Free-TV/IPTV（全球免费频道，英文为主） | `https://raw.githubusercontent.com/Free-TV/IPTV/master/playlist.m3u8` | 2197 | 1534 | IPv4 |
+| suxuang/myIPTV（IPv6） | `https://raw.githubusercontent.com/suxuang/myIPTV/main/ipv6.m3u` | 862 | 63 | IPv6（需家宽 IPv6） |
+| Free-TV/IPTV（全球免费频道，英文为主） | `https://raw.githubusercontent.com/Free-TV/IPTV/master/playlist.m3u8` | 2197 | 1348 | IPv4 |
 | 福建移动（仅厦门移动宽带内） | `https://raw.githubusercontent.com/imDazui/Tvlist-awesome-m3u-m3u8/master/m3u/%E7%A6%8F%E5%BB%BA%E7%A7%BB%E5%8A%A8.m3u` | 127 | — | 仅厦门移动宽带 |
 | CHINA-IPTV 福建移动 unicast（仅厦门移动宽带内） | `https://raw.githubusercontent.com/xisohi/CHINA-IPTV/main/Unicast/fujian/mobile.txt` | 238 | — | 仅厦门移动宽带 |
-| 范明明 itv.m3u（候选，需家宽实测） | `https://raw.githubusercontent.com/fanmingming/live/main/tv/m3u/itv.m3u` | 189 | — | IPv4 |
+| 范明明 itv.m3u（候选，需家宽实测） | `https://raw.githubusercontent.com/fanmingming/live/main/tv/m3u/itv.m3u` | 189 | 0 | IPv4 |
 
 ### EPG 节目单
 
